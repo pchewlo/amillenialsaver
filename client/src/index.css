@@ -253,7 +253,7 @@ body {
 
 .dupes-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 16px;
 }
 
@@ -322,11 +322,86 @@ body {
   white-space: nowrap;
 }
 
+/* Price row with savings */
+.card-price-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
 .dupe-card .card-price {
   font-size: 1.2rem;
   font-weight: 700;
   color: #2e7d32;
+}
+
+.savings-pill {
+  background: #fff3e0;
+  color: #e65100;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+
+/* Similarities */
+.card-section-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #999;
+  margin-bottom: 4px;
+  display: block;
+}
+
+.card-similarities {
   margin-bottom: 10px;
+}
+
+.card-similarities ul,
+.card-differences ul {
+  list-style: none;
+  padding: 0;
+}
+
+.card-similarities li {
+  font-size: 0.84rem;
+  color: #444;
+  line-height: 1.6;
+}
+
+.check-icon {
+  color: #2e7d32;
+  margin-right: 4px;
+  font-weight: 600;
+}
+
+/* Differences */
+.card-differences {
+  margin-bottom: 10px;
+}
+
+.card-differences li {
+  font-size: 0.84rem;
+  color: #888;
+  line-height: 1.6;
+}
+
+.diff-icon {
+  color: #999;
+  margin-right: 4px;
+}
+
+/* Verdict */
+.card-verdict {
+  background: #f8f8f8;
+  margin: 0 -20px 14px;
+  padding: 10px 20px;
+  font-size: 0.84rem;
+  color: #333;
+  font-style: italic;
+  line-height: 1.4;
 }
 
 .dupe-card .card-reason {

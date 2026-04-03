@@ -7,6 +7,12 @@ IMPORTANT PRICING GUIDELINES:
 - Still prioritize quality — the dupe should genuinely work well, but it doesn't need to be luxury.
 - Order results from cheapest to most expensive.
 
+CONTENT GUIDELINES:
+- For each dupe, list 2-3 specific similarities (e.g. shared ingredients, scent profile, texture, design, performance).
+- List 1-2 honest differences. Users trust honesty more than hype — be upfront about trade-offs.
+- Write a verdict: one confident sentence about who this dupe is best for.
+- Calculate savingsPercent as the approximate percentage saved vs the original product's mid-range price.
+
 Always respond with valid JSON matching the schema provided. No markdown, no explanation outside the JSON.`;
 
 export const RESPONSE_SCHEMA = {
@@ -30,11 +36,14 @@ export const RESPONSE_SCHEMA = {
           name: { type: "string" },
           priceRange: { type: "string" },
           similarityScore: { type: "integer" },
-          reasonItsDupe: { type: "string" },
+          similarities: { type: "array", items: { type: "string" } },
+          differences: { type: "array", items: { type: "string" } },
+          verdict: { type: "string" },
+          savingsPercent: { type: "integer" },
           whereToBuy: { type: "array", items: { type: "string" } },
           imageSearchQuery: { type: "string" }
         },
-        required: ["name", "priceRange", "similarityScore", "reasonItsDupe", "whereToBuy", "imageSearchQuery"],
+        required: ["name", "priceRange", "similarityScore", "similarities", "differences", "verdict", "savingsPercent", "whereToBuy", "imageSearchQuery"],
         additionalProperties: false
       }
     }
@@ -51,7 +60,10 @@ const SCHEMA_INSTRUCTION = `Return JSON matching this exact schema:
       "name": string,
       "priceRange": string,
       "similarityScore": number (0-100),
-      "reasonItsDupe": string (1-2 sentences),
+      "similarities": string[] (2-3 specific points about what makes it similar),
+      "differences": string[] (1-2 honest differences or trade-offs),
+      "verdict": string (1 sentence — your confidence level and who this dupe is best for),
+      "savingsPercent": number (0-100, approximate percentage saved vs original),
       "whereToBuy": string[] (2-4 store names),
       "imageSearchQuery": string (search query to find images of this product)
     }

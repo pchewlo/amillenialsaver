@@ -25,8 +25,45 @@ export default function DupeCard({ dupe }) {
           <span className="card-name">{dupe.name}</span>
           <span className="score-badge">{dupe.similarityScore}% match</span>
         </div>
-        <div className="card-price">{dupe.priceRange}</div>
-        <p className="card-reason">{dupe.reasonItsDupe}</p>
+
+        <div className="card-price-row">
+          <span className="card-price">{dupe.priceRange}</span>
+          {dupe.savingsPercent > 0 && (
+            <span className="savings-pill">Save ~{dupe.savingsPercent}%</span>
+          )}
+        </div>
+
+        {dupe.similarities && dupe.similarities.length > 0 && (
+          <div className="card-similarities">
+            <span className="card-section-label">Why it's a dupe</span>
+            <ul>
+              {dupe.similarities.map((s, i) => (
+                <li key={i}><span className="check-icon">&#10003;</span> {s}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {dupe.differences && dupe.differences.length > 0 && (
+          <div className="card-differences">
+            <span className="card-section-label">Worth knowing</span>
+            <ul>
+              {dupe.differences.map((d, i) => (
+                <li key={i}><span className="diff-icon">&#8226;</span> {d}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {dupe.verdict && (
+          <div className="card-verdict">{dupe.verdict}</div>
+        )}
+
+        {/* Fallback for old-format responses */}
+        {!dupe.similarities && dupe.reasonItsDupe && (
+          <p className="card-reason">{dupe.reasonItsDupe}</p>
+        )}
+
         <div className="card-stores">
           {dupe.whereToBuy.map((store) => (
             <a
